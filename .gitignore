@@ -1,0 +1,7 @@
+contributors/contributors
+Docker/contributors
+terraform/terraform.tfvars
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/ssh/insecure-r31-deployer
+terraform/ssh/insecure-r31-deployer.pub
