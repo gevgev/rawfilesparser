@@ -1,5 +1,6 @@
 contributors/contributors
 mainapp/mainapp
+mainapp/CMD.txt
 Docker/contributors
 terraform/terraform.tfvars
 terraform/terraform.tfstate

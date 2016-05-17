@@ -1,11 +1,76 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"os"
 )
 
+var (
+	dbServerUrl		string
+	dbName			string
+	dbUserName		string
+	dbUserPassw		string
+
+	ftpLocationURL	string
+	ftpUserName		string
+	ftpUserPassw	string
+	ftpSubfolder	string
+
+	tmpFolderName	string
+)
+
+func init() {
+	flagDbServerUrl		:= flag.String("dbs", "", "`DB Server name/IP`")
+	flagDbName			:= flag.String("dbn", "", "`Database Name`")
+	flagDbUserName		:= flag.String("dbu", "", "`Database User Name`")
+	flagDbUserPassw		:= flag.String("dbp", "", "`Database User Password`")
+
+	flagFtpLocationURL	:= flag.String("fur", "", "`FTP URL`")
+	flagFtpUserName		:= flag.String("fun", "", "`FTP User Name`")
+	flagFtpUserPassw	:= flag.String("fup", "", "`FTP User Password`")
+	flagFtpSubfolder	:= flag.String("fus", "", "`FTP Subfolder`")
+
+	flagTmpFolderName	:= flag.String("tmp", "tmp", "`Tmp folder location`")
+
+	flag.Parse()
+
+	if flag.Parsed() {
+		dbServerUrl		= *flagDbServerUrl
+		dbName			= *flagDbName
+		dbUserName		= *flagDbUserName
+		dbUserPassw		= *flagDbUserPassw
+
+		ftpLocationURL	= *flagFtpLocationURL
+		ftpUserName		= *flagFtpUserName
+		ftpUserPassw	= *flagFtpUserPassw
+		ftpSubfolder	= *flagFtpSubfolder
+
+		tmpFolderName	= *flagTmpFolderName
+
+		} else {
+			flag.Usage()
+			os.Exit(-1)
+		}
+
+}
+
+func printParams() {
+	fmt.Println("dbServerUrl\t", dbServerUrl)
+	fmt.Println("dbName\t\t", dbName)
+	fmt.Println("dbUserName\t", dbUserName)
+	fmt.Println("dbUserPassw\t", dbUserPassw)
+
+	fmt.Println("ftpLocationURL\t", ftpLocationURL)
+	fmt.Println("ftpUserName\t", ftpUserName)
+	fmt.Println("ftpUserPassw\t", ftpUserPassw)
+	fmt.Println("ftpSubfolder\t", ftpSubfolder)
+
+	fmt.Println("tmpFolderName\t", tmpFolderName)
+}
+
 func main() {
-	fmt.Println("Here we are")
+	printParams()
 
 	// Input Parameters:
 	//	1. DB Server URL
