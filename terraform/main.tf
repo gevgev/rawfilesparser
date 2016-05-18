@@ -6,7 +6,7 @@ provider "aws" {
 
 /* App servers */
 resource "aws_instance" "worker-server" {
-  count = 1
+  count = 0
   ami = "${lookup(var.amis, var.region)}"
   instance_type = "t2.micro"
   subnet_id = "${var.subnet_id}"
@@ -22,8 +22,12 @@ resource "aws_instance" "worker-server" {
   }
   provisioner "remote-exec" {
     inline = [
-      /* Install docker */ 
       "sudo apt-gey update",
+      /* Install samba client */
+      /*"sudo apt-get -y install smbclient",*/
+      /* Connect to shared folder */
+      /*"smbclient //52.24.138.152/share",*/
+      /* Install docker */ 
       "sudo apt-get -y install lxc wget bsdtar curl",
       "sudo apt-get -y install linux-image-extra-$(uname -r)",
       "sudo modprobe aufs",
@@ -36,3 +40,6 @@ resource "aws_instance" "worker-server" {
   }
 
 }
+
+/* Starting a Docker container on FTP server */
+

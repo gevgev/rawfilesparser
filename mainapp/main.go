@@ -12,11 +12,12 @@ var (
 	dbUserName		string
 	dbUserPassw		string
 
-	ftpLocationURL	string
-	ftpUserName		string
-	ftpUserPassw	string
-	ftpSubfolder	string
+//	ftpLocationURL	string
+//	ftpUserName		string
+//	ftpUserPassw	string
+//	ftpSubfolder	string
 
+	inputFolder		string
 	tmpFolderName	string
 )
 
@@ -26,11 +27,12 @@ func init() {
 	flagDbUserName		:= flag.String("dbu", "", "`Database User Name`")
 	flagDbUserPassw		:= flag.String("dbp", "", "`Database User Password`")
 
-	flagFtpLocationURL	:= flag.String("fur", "", "`FTP URL`")
-	flagFtpUserName		:= flag.String("fun", "", "`FTP User Name`")
-	flagFtpUserPassw	:= flag.String("fup", "", "`FTP User Password`")
-	flagFtpSubfolder	:= flag.String("fus", "", "`FTP Subfolder`")
+//	flagFtpLocationURL	:= flag.String("fur", "", "`FTP URL`")
+//	flagFtpUserName		:= flag.String("fun", "", "`FTP User Name`")
+//	flagFtpUserPassw	:= flag.String("fup", "", "`FTP User Password`")
+//	flagFtpSubfolder	:= flag.String("fus", "", "`FTP Subfolder`")
 
+	flagInputFolder		:= flag.String("i", "", "`Input Folder Name`")
 	flagTmpFolderName	:= flag.String("tmp", "tmp", "`Tmp folder location`")
 
 	flag.Parse()
@@ -41,11 +43,12 @@ func init() {
 		dbUserName		= *flagDbUserName
 		dbUserPassw		= *flagDbUserPassw
 
-		ftpLocationURL	= *flagFtpLocationURL
-		ftpUserName		= *flagFtpUserName
-		ftpUserPassw	= *flagFtpUserPassw
-		ftpSubfolder	= *flagFtpSubfolder
+//		ftpLocationURL	= *flagFtpLocationURL
+//		ftpUserName		= *flagFtpUserName
+//		ftpUserPassw	= *flagFtpUserPassw
+//		ftpSubfolder	= *flagFtpSubfolder
 
+		inputFolder 	= *flagInputFolder
 		tmpFolderName	= *flagTmpFolderName
 
 		} else {
@@ -61,13 +64,15 @@ func printParams() {
 	fmt.Println("dbUserName\t", dbUserName)
 	fmt.Println("dbUserPassw\t", dbUserPassw)
 
-	fmt.Println("ftpLocationURL\t", ftpLocationURL)
-	fmt.Println("ftpUserName\t", ftpUserName)
-	fmt.Println("ftpUserPassw\t", ftpUserPassw)
-	fmt.Println("ftpSubfolder\t", ftpSubfolder)
+//	fmt.Println("ftpLocationURL\t", ftpLocationURL)
+//	fmt.Println("ftpUserName\t", ftpUserName)
+//	fmt.Println("ftpUserPassw\t", ftpUserPassw)
+//	fmt.Println("ftpSubfolder\t", ftpSubfolder)
 
+	fmt.Println("inputFolderName\t", inputFolder)
 	fmt.Println("tmpFolderName\t", tmpFolderName)
 }
+
 
 func main() {
 	printParams()
@@ -89,6 +94,7 @@ func main() {
 	// 2. For each zip file
 	//		2a. Unpack to tmp location
 	//		2b. --- Not necessary: --- Sort the list alphabetically
+
 	//		2b. For each file:
 	//			2b-1: Parse events
 	//			2b-2: Save to DB
