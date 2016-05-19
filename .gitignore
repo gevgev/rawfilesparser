@@ -8,3 +8,6 @@ terraform/terraform.tfstate.backup
 terraform/ssh/insecure-r31-deployer
 terraform/ssh/insecure-r31-deployer.pub
 *.raw
+*.txt
+*.csv
+*.json
