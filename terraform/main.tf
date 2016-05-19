@@ -40,6 +40,3 @@ resource "aws_instance" "worker-server" {
   }
 
 }
-
-/* Starting a Docker container on FTP server */
-
