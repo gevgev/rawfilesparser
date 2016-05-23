@@ -6,7 +6,7 @@ provider "aws" {
 
 /* App servers */
 resource "aws_instance" "worker-server" {
-  count = 1
+  count = 0
   ami = "${lookup(var.amis, var.region)}"
   instance_type = "t2.micro"
   subnet_id = "${var.subnet_id}"
@@ -34,7 +34,7 @@ resource "aws_instance" "worker-server" {
       "curl -sSL https://get.docker.com/ | sh",
       "sudo usermod -aG docker ubuntu",
       /* Start container */
-      "sudo docker run -d -e PATH='/iGuide/Click/' -e 'FILE=Click-Tacoma-test.zip' -e 'BUCKET=r31analysis/click' -e AWS_ACCESS_KEY_ID='${var.access_key}' -e AWS_SECRET_ACCESS_KEY='${var.secret_key}' gevgev/s3uploader"
+      "sudo docker run -d -e FTPPATH='/iGuide/Click/' -e 'FILE=Click-Tacoma-test.zip' -e 'BUCKET=r31analysis/click' -e AWS_ACCESS_KEY_ID='${var.access_key}' -e AWS_SECRET_ACCESS_KEY='${var.secret_key}' gevgev/s3uploader"
       /* "sudo docker run --volumes-from ovpn-data --rm gosuri/openvpn ovpn_genconfig -p ${var.vpc_cidr} -u udp://${aws_instance.nat.public_ip}" */
     ]
   }
