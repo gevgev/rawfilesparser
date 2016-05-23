@@ -33,8 +33,14 @@ resource "aws_instance" "worker-server" {
       "sudo modprobe aufs",
       "curl -sSL https://get.docker.com/ | sh",
       "sudo usermod -aG docker ubuntu",
+      /* get the files from specified location */
+      "mkdir data",
+      "cd data",
+      "wget --no-passive-ftp ${var.ftp-url}/${var.ftp-folder}/${var.ftp-file}",
+      "export DATAFOLDER=$(pwd)",
+      "cd ..",
       /* Start container */
-      "sudo docker run -d -e FTPPATH='/iGuide/Click' -e 'FILE=Click-Tacoma-test.zip' -e 'BUCKET=r31analysis/click' -e AWS_ACCESS_KEY_ID='${var.access_key}' -e AWS_SECRET_ACCESS_KEY='${var.secret_key}' gevgev/s3uploader"
+      "sudo docker run -d -v $DATAFOLDER:/data -e 'FILE=/data/${var.ftp-file}' -e 'BUCKET=${var.s3-bucket}' -e AWS_ACCESS_KEY_ID='${var.access_key}' -e AWS_SECRET_ACCESS_KEY='${var.secret_key}' gevgev/s3uploader"
       /* "sudo docker run --volumes-from ovpn-data --rm gosuri/openvpn ovpn_genconfig -p ${var.vpc_cidr} -u udp://${aws_instance.nat.public_ip}" */
     ]
   }

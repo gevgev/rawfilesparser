@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 if [ "$#" -lt 1 ]; then
   echo "ERROR: missing required parameters:  <instances> "
   echo "|"
@@ -8,6 +10,9 @@ if [ "$#" -lt 1 ]; then
 fi
 
 readonly instances=$1
+readonly s3_bucket="r31analysis/click" #$2
+readonly ftp_folder="/iGuide/Click" #$3
+readonly ftp_file="Click-Tacoma-test.zip" #$4
 
 if [ "$instances" -gt 2 -o "$instances" -lt 0 ]; then
   echo "ERROR: Allowed instances count is 0, 1, 2"
@@ -16,7 +21,7 @@ fi
 
 echo "Instances requested: $instances"
 
-terraform plan -var "instances=$instances"
+terraform plan -var "instances=$instances" -var "s3-bucket='$s3_bucket'" -var "ftp-folder='$ftp_folder'" -var "ftp-file='$ftp_file'"
 
 plan_result=$?
 
@@ -32,7 +37,7 @@ read confirm
 
 if [ "$confirm" = "yes" ]; then
 	echo "Proceeding with the requested update"
-	terraform apply -var "instances=$instances"
+	terraform apply -var "instances=$instances" -var "s3-bucket='$s3_bucket'" -var "ftp-folder='$ftp_folder'" -var "ftp-file='$ftp_file'"
 else
 	echo "Leaving as is"
 fi

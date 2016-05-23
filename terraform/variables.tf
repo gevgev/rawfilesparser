@@ -25,3 +25,20 @@ variable "amis" {
 variable "instances" {
 	description = "Number of angoss worker instances to launch. 0 = shut down everything"
 }
+
+variable "ftp-folder" {
+	description = "FTP path to folder"
+}
+
+variable "ftp-file" {
+	description = "File name"
+}
+
+variable "s3-bucket" {
+	description = "Target S3 bucket full name"
+}
+
+variable "ftp-url" {
+	description = "FTP URL"
+	default = "ftp://adsawsftp:quickaccess123@ec2-52-24-138-152.us-west-2.compute.amazonaws.com"
+}
