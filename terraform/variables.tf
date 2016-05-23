@@ -21,3 +21,7 @@ variable "amis" {
     us-west-2 = "ami-9abea4fb"
   }
 }
+
+variable "instances" {
+	description = "Number of angoss worker instances to launch. 0 = shut down everything"
+}
