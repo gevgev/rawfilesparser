@@ -10,7 +10,7 @@ variable "region"     				{ default = "us-west-2" }
 variable "zone" 					{ default = "us-west-2a"}
 variable "vpc_id"       			{ default = "vpc-a88757cc" }
 variable "subnet_id"    			{ default = "subnet-dde815ab" }
-variable "vpc_security_group_id"    { default = "sg-70595417" }
+variable "vpc_security_group_id"    { default = "sg-74f8ac13" }
 
 /* Ubuntu 14.04 amis by region */
 variable "amis" {
